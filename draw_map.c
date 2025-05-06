@@ -25,7 +25,7 @@ static void draw_tile(t_game *game, char tile, int x, int y)
 
 	if (!img)
 	{
-		printf("⚠️ Image NULL à la position [%d][%d] pour le tile '%c'\n", y, x, tile);
+		printf("Image NULL à la position [%d][%d] pour le tile '%c'\n", y, x, tile);
 		exit(1);
 	}
 
@@ -39,7 +39,7 @@ void draw_map(t_game *game)
 	int x;
 	int y;
 
-	printf("draw_map() appelé\n");  // 👈 ça dit que la fonction est appelée
+	printf("draw_map() appelé\n");  // ca dit que la fonction est appelée
 
 	y = 0;
 	while (y < game->map_height)
@@ -52,7 +52,7 @@ void draw_map(t_game *game)
 		x = 0;
 		while (x < game->map_width)
 		{
-			printf("case [%d][%d] = %c\n", y, x, game->map[y][x]);  // 👈 pour chaque case
+			printf("case [%d][%d] = %c\n", y, x, game->map[y][x]);  // pour chaque case
 		draw_tile(game, game->map[y][x], x, y);
 			x++;
 		}

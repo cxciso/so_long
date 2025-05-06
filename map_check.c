@@ -10,7 +10,6 @@ void	check_rectangular(t_game *game)
 	 printf("Map dimensions: %d x %d\n", game->map_height, game->map_width);
 	while (game->map[i])
 	{
-	
 		if ((int)ft_strlen(game->map[i]) != len)
 		{
 			write(2, "Error\nMap non rectangulaire\n", 29);

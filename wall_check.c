@@ -1,5 +1,5 @@
 #include "so_long.h"
-
+#include <string.h>
 void	check_horizontal_walls(t_game *game)
 {
 	int	i;
@@ -7,7 +7,9 @@ void	check_horizontal_walls(t_game *game)
 
 	i = 0;
 	last = game->map_height - 1;
-	while (game->map[0][i])
+	printf("TOTO %s\n", game->map[0]);
+	printf("TATA %s\n", game->map[last]);
+	while (i < game->map_width - 1)
 	{
 		if (game->map[0][i] != '1' || game->map[last][i] != '1')
 		{

@@ -30,7 +30,7 @@ static int	count_lines(char *filename)
 			count++;
 	}
 	close(fd);
-	return (count + 1);
+	return (count);
 }
 
 static void	read_map(char *filename, t_game *game, int lines)
