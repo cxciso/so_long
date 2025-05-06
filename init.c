@@ -6,33 +6,58 @@
 /*   By: ciso <ciso@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:24:45 by ciso              #+#    #+#             */
-/*   Updated: 2025/05/01 16:25:00 by ciso             ###   ########.fr       */
+/*   Updated: 2025/05/06 18:07:54 by ciso             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-int	win_init(t_vars *vars)
+
+#include "so_long.h"
+static void	load_images(t_game *game)
 {
-	vars->mlx = mlx_init();
-	if (!vars->mlx)
-		return (0);
-	vars->win = mlx_new_window(vars->mlx, WIDTH, HEIGHT, "FDF by malapoug");
-	if (!vars->win)
-		return (0);
-	vars->img = malloc(sizeof(t_data));
-	if (!vars->img)
-		return (0);
-	vars->img->img = mlx_new_image(vars->mlx, WIDTH, HEIGHT);
-	if (!vars->img->img)
-		return (0);
-	vars->img->addr = mlx_get_data_addr(vars->img->img, \
-		&vars->img->bpp, &vars->img->line_length, &vars->img->endian);
-	return (1);
+	int	w;
+	int	h;
+
+	game->img_wall = mlx_xpm_file_to_image(game->mlx, "sprites/wall.xpm", &w, &h);
+	printf("img_wall loaded: %p\n", game->img_wall);
+
+	game->img_floor = mlx_xpm_file_to_image(game->mlx, "sprites/floor.xpm", &w, &h);
+	printf("img_floor loaded: %p\n", game->img_floor);
+
+	game->img_player = mlx_xpm_file_to_image(game->mlx, "sprites/link.xpm", &w, &h);
+	printf("img_player loaded: %p\n", game->img_player);
+
+	game->img_collectible = mlx_xpm_file_to_image(game->mlx, "sprites/ruby.xpm", &w, &h);
+	printf("img_collectible loaded: %p\n", game->img_collectible);
+
+	game->img_exit = mlx_xpm_file_to_image(game->mlx, "sprites/exit.xpm", &w, &h);
+	printf("img_exit loaded: %p\n", game->img_exit);
+
+	if (!game->img_wall || !game->img_floor || !game->img_player
+		|| !game->img_collectible || !game->img_exit)
+	{
+		write(2, "Error\nÉchec de chargement des images .xpm\n", 43);
+		exit(EXIT_FAILURE);
+	}
 }
 
-int	init(t_vars *vars)
+
+void	init_game(t_game *game)
 {
-	if (!win_init(vars))
-		return (0);
-	return (1);
+	game->mlx = mlx_init();
+	if (!game->mlx)
+	{
+		write(2, "Erreur: mlx_init a échoué\n", 27);
+		exit(EXIT_FAILURE);
+	}
+	game->win = mlx_new_window(game->mlx,
+		game->map_width * 64, game->map_height * 64, "So Long with Link");
+	if (!game->win)
+	{
+		write(2, "Erreur: création fenêtre échouée\n", 33);
+		exit(EXIT_FAILURE);
+	}
+	printf("Before load_images\n");
+	load_images(game);
+	game->move_count = 0;
 }

@@ -1,50 +1,37 @@
-
-
 NAME = so_long
 
 CC = gcc
+CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux -Ilibft -Iget_next_line
 
-DEBUG = -fsanitize=address
-
-CFLAGS = -Wall -Wextra -Werror
-
-SRCS = so_long.h\
-		main.c
+SRCS = main.c init.c parser.c draw_map.c map_check.c wall_check.c \
+       get_next_line/get_next_line.c get_next_line/get_next_line_utils.c move.c
 
 OBJS = $(SRCS:.c=.o)
 
-RM = rm -f
-
+MLX_DIR = minilibx-linux
+LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@make -C minilibx-linux/
-	@make -C libft/
-	@$(CC) $(CFLAGS) $(OBJS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
-	@echo "so_long" compiled!\n"
-
-debug: $(OBJS)
-	@make -C minilibx-linux/
-	@make -C libft/
-	@$(CC) $(CFLAGS) $(DEBUG) $(OBJS) libft/libft.a minilibx-linux/libmlx_Linux.a -L/usr/lib -Imlx -lXext -lX11 -lm -lz -o $(NAME)
-	@echo "so_long compiled with debug!\n"
+	@make -C $(MLX_DIR)
+	@make -C $(LIBFT_DIR)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) \
+		-L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lbsd \
+		-o $(NAME)
 
 %.o: %.c
-	@$(CC) $(CFLAGS) -I/usr/include -Imlx -O3 -c $< -o $@
-
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@make clean -C libft/
-	@$(RM) $(OBJS)
+	@make clean -C $(LIBFT_DIR)
+	@rm -f $(OBJS)
 
 fclean: clean
-	@make clean -C minilibx-linux/
-	@make fclean -C libft/
-	@$(RM) $(NAME)
-
-done:
-	@echo "$$HEADER"
+	@make fclean -C $(LIBFT_DIR)
+	@make clean -C $(MLX_DIR)
+	@rm -f $(NAME)
 
 re: fclean all
 
