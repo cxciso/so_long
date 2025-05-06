@@ -28,7 +28,6 @@ static void draw_tile(t_game *game, char tile, int x, int y)
 		printf("Image NULL à la position [%d][%d] pour le tile '%c'\n", y, x, tile);
 		exit(1);
 	}
-
 	mlx_put_image_to_window(game->mlx, game->win, img, x * TILE_SIZE, y * TILE_SIZE);
 }
 

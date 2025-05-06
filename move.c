@@ -14,14 +14,14 @@
 int	handle_input(int keycode, void *param)
 {
 	t_game *game = (t_game *)param;
-
-	if (keycode == 119) // Z
+	printf("%d\n", keycode);
+	if (keycode == 65361) // Z
 		move_player(game, 0, -1);
-	else if (keycode == 115) // S
+	else if (keycode == 65362) // S
 		move_player(game, 0, 1);
-	else if (keycode == 97) // Q
+	else if (keycode == 65364) // Q
 		move_player(game, -1, 0);
-	else if (keycode == 100) // D
+	else if (keycode == 65363) // D
 		move_player(game, 1, 0);
 	else if (keycode == 65307) // ESC
 		exit(0);
