@@ -7,29 +7,30 @@
 {
 	mlx_put_image_to_window(game->mlx, game->win, img, x * 64, y * 64);
 }*/
-
-static void draw_tile(t_game *game, char tile, int x, int y)
+static void	draw_tile(t_game *game, char tile, int x, int y)
 {
-	void *img = NULL;
+	if (tile == '0' || tile == 'P' || tile == 'C' || tile == 'E')
+    mlx_put_image_to_window(game->mlx, game->win, game->img_floor,
+        x * TILE_SIZE, y * TILE_SIZE);
 
 	if (tile == '1')
-		img = game->img_wall;
-	else if (tile == '0')
-		img = game->img_floor;
+		mlx_put_image_to_window(game->mlx, game->win, game->img_wall,
+			x * TILE_SIZE, y * TILE_SIZE);
 	else if (tile == 'P')
-		img = game->img_player;
+		mlx_put_image_to_window(game->mlx, game->win, game->img_player,
+			x * TILE_SIZE, y * TILE_SIZE);
 	else if (tile == 'C')
-		img = game->img_collectible;
+		mlx_put_image_to_window(game->mlx, game->win, game->img_collectible,
+			x * TILE_SIZE, y * TILE_SIZE);
 	else if (tile == 'E')
-		img = game->img_exit;
-
-	if (!img)
-	{
-		printf("Image NULL à la position [%d][%d] pour le tile '%c'\n", y, x, tile);
-		exit(1);
-	}
-	mlx_put_image_to_window(game->mlx, game->win, img, x * TILE_SIZE, y * TILE_SIZE);
+		mlx_put_image_to_window(game->mlx, game->win, game->img_exit,
+			x * TILE_SIZE, y * TILE_SIZE);
 }
+
+
+
+
+
 
 
 

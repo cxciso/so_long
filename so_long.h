@@ -6,12 +6,14 @@
 /*   By: ciso <ciso@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:26:36 by ciso              #+#    #+#             */
-/*   Updated: 2025/05/06 16:46:45 by ciso             ###   ########.fr       */
+/*   Updated: 2025/05/08 16:30:04 by ciso             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
+
+# define TILE_SIZE 64
 
 # include "get_next_line/get_next_line.h"
 # include "libft/libft.h"
@@ -43,7 +45,7 @@ void		check_rectangular(t_game *game);
 void		check_walls(t_game *game);
 void		check_elements(t_game *game);
 void		scan_elements(t_game *game, int *p, int *c, int *e);
-int		handle_input(int keycode, void *param);
+int			handle_input(int keycode, void *param);
 void		move_player(t_game *game, int dx, int dy);
 
 #endif
