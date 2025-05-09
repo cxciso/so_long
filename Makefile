@@ -1,9 +1,9 @@
 NAME = so_long
 
-CC = gcc
+CC = gcc -g
 CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux -Ilibft -Iget_next_line
 
-SRCS = main.c init.c parser.c draw_map.c map_check.c wall_check.c \
+SRCS = main.c init.c parser.c draw_map.c map_check.c close.c wall_check.c floodfill.c \
        get_next_line/get_next_line.c get_next_line/get_next_line_utils.c move.c
 
 OBJS = $(SRCS:.c=.o)

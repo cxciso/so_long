@@ -22,13 +22,10 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	parse_map(argv[1], &game);
-	printf("Map lue ! Taille : %d x %d\n", game.map_width, game.map_height);
-	for (int i = 0; game.map[i]; i++)
-		printf("%s", game.map[i]);
 	init_game(&game);
-	printf("Before draw_map\n");
 	draw_map(&game);
 	mlx_key_hook(game.win, handle_input, &game);
+	mlx_hook(game.win, 17, 0, handle_close, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }

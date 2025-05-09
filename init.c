@@ -19,26 +19,16 @@ static void	load_images(t_game *game)
 	int	h;
 
 	game->img_wall = mlx_xpm_file_to_image(game->mlx, "sprites/wall.xpm", &w, &h);
-printf("img_wall loaded: %p (%dx%d)\n", game->img_wall, w, h);
-
-game->img_floor = mlx_xpm_file_to_image(game->mlx, "sprites/floor.xpm", &w, &h);
-printf("img_floor loaded: %p (%dx%d)\n", game->img_floor, w, h);
-
-game->img_player = mlx_xpm_file_to_image(game->mlx, "sprites/link.xpm", &w, &h);
-printf("img_player loaded: %p (%dx%d)\n", game->img_player, w, h);
-
-game->img_collectible = mlx_xpm_file_to_image(game->mlx, "sprites/ruby.xpm", &w, &h);
-printf("img_collectible loaded: %p (%dx%d)\n", game->img_collectible, w, h);
-
-game->img_exit = mlx_xpm_file_to_image(game->mlx, "sprites/exit.xpm", &w, &h);
-printf("img_exit loaded: %p (%dx%d)\n", game->img_exit, w, h);
-
+	game->img_floor = mlx_xpm_file_to_image(game->mlx, "sprites/floor.xpm", &w, &h);
+	game->img_player = mlx_xpm_file_to_image(game->mlx, "sprites/link.xpm", &w, &h);
+	game->img_collectible = mlx_xpm_file_to_image(game->mlx, "sprites/ruby.xpm", &w, &h);
+	game->img_exit = mlx_xpm_file_to_image(game->mlx, "sprites/exit.xpm", &w, &h);
 
 	if (!game->img_wall || !game->img_floor || !game->img_player
 		|| !game->img_collectible || !game->img_exit)
 	{
-		write(2, "Error\nÉchec de chargement des images .xpm\n", 43);
-		exit(EXIT_FAILURE);
+		write(2, "Error\nError loading image\n", 26);
+		close_game(game);
 	}
 }
 
@@ -47,11 +37,9 @@ void	init_game(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 	{
-		write(2, "Erreur d'initialisation MLX\n", 29);
+		write(2, "Error\nmlx init error\n", 21);
 		exit(EXIT_FAILURE);
 	}
-
-
 	game->win = mlx_new_window(
 		game->mlx,
 		game->map_width * TILE_SIZE,
@@ -60,11 +48,20 @@ void	init_game(t_game *game)
 	);
 	if (!game->win)
 	{
-		write(2, "Erreur de création de fenêtre\n", 30);
+		write(2, "Error\nwindow creation error\n", 28);
 		exit(EXIT_FAILURE);
 	}
-
+	game->last_was_exit = 0;
+	game->move_count = 0;
 	load_images(game);     
 	draw_map(game);    
+}
+
+
+
+int 	handle_close(t_game *game)
+{
+	close_game(game);
+	return (0);
 }
 

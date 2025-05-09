@@ -27,33 +27,22 @@ static void	draw_tile(t_game *game, char tile, int x, int y)
 			x * TILE_SIZE, y * TILE_SIZE);
 }
 
-
-
-
-
-
-
-
 void draw_map(t_game *game)
 {
 	int x;
 	int y;
-
-	printf("draw_map() appelé\n");  // ca dit que la fonction est appelée
 
 	y = 0;
 	while (y < game->map_height)
 	{
 		if (!game->map[y])
 		{
-			printf("game->map[%d] est NULL !\n", y);
 			break;
 		}
 		x = 0;
 		while (x < game->map_width)
 		{
-			printf("case [%d][%d] = %c\n", y, x, game->map[y][x]);  // pour chaque case
-		draw_tile(game, game->map[y][x], x, y);
+			draw_tile(game, game->map[y][x], x, y);
 			x++;
 		}
 		y++;

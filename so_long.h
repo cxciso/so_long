@@ -24,8 +24,10 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	char	**map;
+	int		last_was_exit;
 	int		map_width;
 	int		map_height;
+	int		collectibles;
 	int		player_x;
 	int		player_y;
 	int		move_count;
@@ -47,5 +49,12 @@ void		check_elements(t_game *game);
 void		scan_elements(t_game *game, int *p, int *c, int *e);
 int			handle_input(int keycode, void *param);
 void		move_player(t_game *game, int dx, int dy);
+int	is_path_valid(t_game *game);
+void	free_map(char **map);
+int	map_height(char **map);
+int	close_game(t_game *game);
+int	handle_close(t_game *game);
+
+
 
 #endif

@@ -19,16 +19,3 @@ int	ft_isascii(int a)
 	else
 		return (0);
 }
-
-// int	main(int argc, char *argv[])
-// {
-// 	int	i;
-
-// 	i = 1;
-// 	while (argv[i])
-// 	{
-// 		printf("RESULT : %d\n", ft_isascii(atoi(argv[i])));
-// 		i++;
-// 	}
-// 	return (0);
-// }
