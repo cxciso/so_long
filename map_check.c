@@ -71,6 +71,7 @@ void	scan_elements(t_game *game, int *p, int *c, int *e)
 	int	j;
 
 	i = -1;
+	game->collectibles = 0;
 	while (++i < game->map_height)
 	{
 		j = -1;

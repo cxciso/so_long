@@ -6,13 +6,12 @@
 /*   By: ciso <ciso@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 16:24:45 by ciso              #+#    #+#             */
-/*   Updated: 2025/05/08 15:37:56 by ciso             ###   ########.fr       */
+/*   Updated: 2025/05/10 18:52:55 by ciso             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "so_long.h"
+
 static void	load_images(t_game *game)
 {
 	int	w;

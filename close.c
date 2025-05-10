@@ -24,8 +24,8 @@ int	close_game(t_game *game)
 	if (game->mlx && game->win)
     {
 		mlx_destroy_window(game->mlx, game->win);
+		mlx_destroy_display(game->mlx);
     }
-	free(game->win);
 	free(game->mlx);
     free(game);
 	exit(0);
