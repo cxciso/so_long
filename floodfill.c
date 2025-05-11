@@ -70,7 +70,7 @@ int	is_path_valid(t_game *game)
         {
             free_map(tmp_map);
             write(2, "Error\nNo path available\n", 24);
-            close_game(game);
+            close_game(game, 1);
         }
         y++;
     }

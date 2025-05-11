@@ -12,7 +12,7 @@ void	check_horizontal_walls(t_game *game)
 		if (game->map[0][i] != '1' || game->map[last][i] != '1')
 		{
 			write(2, "Error\nHorizontal walls aren't closed\n", 37);
-			close_game(game);
+			close_game(game, 1);
 		}
 		i++;
 	}
@@ -29,7 +29,7 @@ void	check_vertical_walls(t_game *game)
 			game->map[i][game->map_width - 1] != '1')
 		{
 			write(2, "Error\nVertical walls aren't closed\n", 35);
-			close_game(game);
+			close_game(game, 1);
 		}
 		i++;
 	}

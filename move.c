@@ -26,7 +26,7 @@ int	handle_input(int keycode, void *param)
 	else if (keycode == 65363 || keycode == 100) // D
 		move_player(game, 1, 0);
 	else if (keycode == 65307) // ESC
-	close_game(game);
+		close_game(game, 0);
 	return (0);
 }
 
@@ -57,7 +57,7 @@ void	move_player(t_game *game, int dx, int dy)
 		if (game->collectibles == 0)
 		{
 			write(1, "🪇  You win 🪇\n", 19);
-			close_game(game);
+			close_game(game, 0);
 		}
 	if (game->last_was_exit)
 	{

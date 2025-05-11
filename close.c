@@ -2,14 +2,19 @@
 
 void free_imgs(t_game *game)
 {
-    mlx_destroy_image(game->mlx, game->img_wall);
-    mlx_destroy_image(game->mlx, game->img_floor);
-    mlx_destroy_image(game->mlx, game->img_player);
-    mlx_destroy_image(game->mlx, game->img_collectible);
-    mlx_destroy_image(game->mlx, game->img_exit);
+	if (game->img_wall)
+    	mlx_destroy_image(game->mlx, game->img_wall);
+	if (game->img_floor)
+    	mlx_destroy_image(game->mlx, game->img_floor);
+	if (game->img_player)
+    	mlx_destroy_image(game->mlx, game->img_player);
+	if (game->img_collectible)
+    	mlx_destroy_image(game->mlx, game->img_collectible);
+	if (game->img_exit)
+    	mlx_destroy_image(game->mlx, game->img_exit);
 }
 
-int	close_game(t_game *game)
+int	close_game(t_game *game, int value)
 {
 	int	i;
 
@@ -27,6 +32,5 @@ int	close_game(t_game *game)
 		mlx_destroy_display(game->mlx);
     }
 	free(game->mlx);
-    free(game);
-	exit(0);
+	exit(value);
 }

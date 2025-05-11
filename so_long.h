@@ -52,7 +52,7 @@ void		move_player(t_game *game, int dx, int dy);
 int	is_path_valid(t_game *game);
 void	free_map(char **map);
 int	map_height(char **map);
-int	close_game(t_game *game);
+int	close_game(t_game *game, int value);
 int	handle_close(t_game *game);
 
 

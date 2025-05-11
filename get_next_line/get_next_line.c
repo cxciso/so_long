@@ -37,7 +37,7 @@ char	*get_next_line(int fd)
 	if (final == NULL || ft_strchrx(final, '\n') == -1)
 		final = count_and_join(final, fd);
 	len = ft_strchrx(final, '\n');
-	if (len >= 0)
+	if (len > 0)
 	{
 		sub = ft_substrx(final, 0, len + 1);
 		final = ft_substrx(final, len + 1, ft_strlen(final) - len);

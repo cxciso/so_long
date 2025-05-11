@@ -12,6 +12,21 @@
 
 #include "so_long.h"
 
+void	init_values(t_game *game)
+{
+	game->mlx = NULL;
+	game->win = NULL;
+	game->map = NULL;
+	game->img_wall = NULL;
+	game->img_floor = NULL;
+	game->img_player = NULL;
+	game->img_collectible = NULL;
+	game->img_exit = NULL;
+	game->collectibles = 0;
+	game->last_was_exit = 0;
+	game->move_count = 0;
+}
+
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -21,6 +36,7 @@ int	main(int argc, char **argv)
 		write(2, "Usage: ./so_long map.ber\n", 26);
 		return (1);
 	}
+	init_values(&game);
 	parse_map(argv[1], &game);
 	init_game(&game);
 	draw_map(&game);

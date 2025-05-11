@@ -20,6 +20,7 @@ static int	count_lines(char *filename)
 	char	buf;
 	int		ret;
 
+	buf = 0;
 	count = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
@@ -47,12 +48,11 @@ static void	read_map(char *filename, t_game *game, int lines)
 	game->map = malloc(sizeof(char *) * (lines + 1));
 	if (!game->map)
 		exit(EXIT_FAILURE);
-	while (i < lines)
+	game->map[i] = get_next_line(fd);
+	while (game->map[i])
 	{
-		game->map[i] = get_next_line(fd);
-		if (!game->map[i] || ft_strlen(game->map[i]) == 1)
-			break ;
 		i++;
+		game->map[i] = get_next_line(fd);
 	}
 	game->map[i] = NULL;
 	close(fd);
@@ -72,7 +72,7 @@ void	parse_map(char *filename, t_game *game)
 	if (!game->map[0])
 	{
 		write(2, "Error\nEmpty file\n", 17);
-		close_game(game);
+		close_game(game, 1);
 	}
 	game->map_height = lines;
 	game->map_width = ft_strlen(game->map[0]) - 1;

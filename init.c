@@ -27,7 +27,7 @@ static void	load_images(t_game *game)
 		|| !game->img_collectible || !game->img_exit)
 	{
 		write(2, "Error\nError loading image\n", 26);
-		close_game(game);
+		close_game(game, 1);
 	}
 }
 
@@ -56,11 +56,9 @@ void	init_game(t_game *game)
 	draw_map(game);    
 }
 
-
-
 int 	handle_close(t_game *game)
 {
-	close_game(game);
+	close_game(game, 0);
 	return (0);
 }
 

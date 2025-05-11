@@ -16,7 +16,7 @@ void	check_rectangular(t_game *game)
 		if (val != len)
 		{
 			write(2, "Error\nMap isn't rectangular\n", 28);
-			close_game(game);
+			close_game(game, 1);
 		}
 		i++;
 	}
@@ -27,7 +27,7 @@ void	validate_elements(t_game *game, int p, int c, int e)
 	if (p != 1 || c < 1 || e != 1)
 	{
 		write(2, "Error\nP, C, or E\n", 17);
-		close_game(game);
+		close_game(game, 1);
 	}
 }
 void	check_wrong_elements(t_game *game)
@@ -45,7 +45,7 @@ void	check_wrong_elements(t_game *game)
 				game->map[i][j] != 'C' && game->map[i][j] != 'E' && game->map[i][j] != 'P')
 			{
 				write(2, "Error\nInvalid char\n", 19);
-				close_game(game);
+				close_game(game, 1);
 			}
 		}
 	}

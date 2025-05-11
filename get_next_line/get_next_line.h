@@ -4,7 +4,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 1024
 
 size_t	ft_strlen(const char *s);
 char	*ft_strjoinx(char *s1, char *s2);
