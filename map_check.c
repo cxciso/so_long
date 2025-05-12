@@ -26,7 +26,7 @@ void	validate_elements(t_game *game, int p, int c, int e)
 {
 	if (p != 1 || c < 1 || e != 1)
 	{
-		write(2, "Error\ninvalid element\n", 23);
+		write(2, "Error\ninvalid element\n", 22);
 		close_game(game, 1);
 	}
 }
