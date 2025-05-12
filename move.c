@@ -11,26 +11,27 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-#include "so_long.h"
 #include <stdlib.h>
 
 int	handle_input(int keycode, void *param)
 {
-	t_game *game = (t_game *)param;
-	if (keycode == 65362 || keycode == 119) // Z
+	t_game	*game;
+
+	game = (t_game *)param;
+	if (keycode == 65362 || keycode == 119)
 		move_player(game, 0, -1);
-	else if (keycode == 65364 || keycode == 115) // S
+	else if (keycode == 65364 || keycode == 115)
 		move_player(game, 0, 1);
-	else if (keycode == 65361 || keycode == 97) // Q
+	else if (keycode == 65361 || keycode == 97)
 		move_player(game, -1, 0);
-	else if (keycode == 65363 || keycode == 100) // D
+	else if (keycode == 65363 || keycode == 100)
 		move_player(game, 1, 0);
-	else if (keycode == 65307) // ESC
+	else if (keycode == 65307)
 		close_game(game, 0);
 	return (0);
 }
 
-void move_player2(t_game *game, int new_x, int new_y)
+void	move_player2(t_game *game, int new_x, int new_y)
 {
 	if (game->map[new_y][new_x] == 'E')
 		game->last_was_exit = 1;
@@ -42,10 +43,11 @@ void move_player2(t_game *game, int new_x, int new_y)
 	write(1, "\n", 1);
 	draw_map(game);
 }
+
 void	move_player(t_game *game, int dx, int dy)
 {
-	int		new_x;
-	int		new_y;
+	int	new_x;
+	int	new_y;
 
 	new_x = game->player_x + dx;
 	new_y = game->player_y + dy;
@@ -54,11 +56,13 @@ void	move_player(t_game *game, int dx, int dy)
 	if (game->map[new_y][new_x] == 'C')
 		game->collectibles--;
 	if (game->map[new_y][new_x] == 'E')
+	{
 		if (game->collectibles == 0)
 		{
 			write(1, "🪇  You win 🪇\n", 19);
 			close_game(game, 0);
 		}
+	}
 	if (game->last_was_exit)
 	{
 		game->map[game->player_y][game->player_x] = 'E';
@@ -68,7 +72,3 @@ void	move_player(t_game *game, int dx, int dy)
 		game->map[game->player_y][game->player_x] = '0';
 	move_player2(game, new_x, new_y);
 }
-
-
-
-

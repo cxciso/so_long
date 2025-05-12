@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ciso <ciso@student.42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/01 16:24:45 by ciso              #+#    #+#             */
+/*   Updated: 2025/05/10 18:52:55 by ciso             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "so_long.h"
 
 void	check_rectangular(t_game *game)
 {
 	int	i;
 	int	len;
-	int val;
+	int	val;
 
 	i = 0;
 	len = ft_strlen(game->map[0]);
@@ -30,6 +41,7 @@ void	validate_elements(t_game *game, int p, int c, int e)
 		close_game(game, 1);
 	}
 }
+
 void	check_wrong_elements(t_game *game)
 {
 	int	i;
@@ -41,8 +53,9 @@ void	check_wrong_elements(t_game *game)
 		j = -1;
 		while (++j < game->map_width)
 		{
-			if (game->map[i][j] != '0' && game->map[i][j] != '1' && \
-				game->map[i][j] != 'C' && game->map[i][j] != 'E' && game->map[i][j] != 'P')
+			if (game->map[i][j] != '0' && game->map[i][j] != '1'
+				&& game->map[i][j] != 'C' && game->map[i][j] != 'E'
+				&& game->map[i][j] != 'P')
 			{
 				write(2, "Error\nInvalid char\n", 19);
 				close_game(game, 1);
@@ -77,7 +90,7 @@ void	scan_elements(t_game *game, int *p, int *c, int *e)
 		j = -1;
 		while (++j < game->map_width)
 		{
-			if (game->map[i][j] == 'P')	
+			if (game->map[i][j] == 'P')
 			{
 				game->player_x = j;
 				game->player_y = i;

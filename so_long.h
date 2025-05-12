@@ -19,6 +19,7 @@
 # include "libft/libft.h"
 # include <fcntl.h>
 # include <mlx.h>
+
 typedef struct s_game
 {
 	void	*mlx;
@@ -49,12 +50,10 @@ void		check_elements(t_game *game);
 void		scan_elements(t_game *game, int *p, int *c, int *e);
 int			handle_input(int keycode, void *param);
 void		move_player(t_game *game, int dx, int dy);
-int	is_path_valid(t_game *game);
-void	free_map(char **map);
-int	map_height(char **map);
-int	close_game(t_game *game, int value);
-int	handle_close(t_game *game);
-
-
+int			is_path_valid(t_game *game);
+void		free_map(char **map);
+int			map_height(char **map);
+int			close_game(t_game *game, int value);
+int			handle_close(t_game *game);
 
 #endif

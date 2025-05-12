@@ -12,7 +12,6 @@
 
 #include "so_long.h"
 
-
 static int	count_lines(char *filename)
 {
 	int		fd;
@@ -25,10 +24,12 @@ static int	count_lines(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (-1);
-	while ((ret = read(fd, &buf, 1)) > 0)
+	ret = read(fd, &buf, 1);
+	while (ret > 0)
 	{
 		if (buf == '\n')
 			count++;
+		ret = read(fd, &buf, 1);
 	}
 	if (buf != '\n')
 		count++;
@@ -38,8 +39,8 @@ static int	count_lines(char *filename)
 
 static void	read_map(char *filename, t_game *game, int lines)
 {
-	int		fd;
-	int		i;
+	int	fd;
+	int	i;
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
