@@ -33,12 +33,18 @@ int	handle_input(int keycode, void *param)
 
 void	move_player2(t_game *game, int new_x, int new_y)
 {
+	if (game->last_was_exit)
+	{
+		game->map[game->player_y][game->player_x] = 'E';
+		game->last_was_exit = 0;
+	}
+	else
+		game->map[game->player_y][game->player_x] = '0';
 	if (game->map[new_y][new_x] == 'E')
 		game->last_was_exit = 1;
 	game->map[new_y][new_x] = 'P';
 	game->player_x = new_x;
 	game->player_y = new_y;
-	game->move_count++;
 	ft_putnbr_fd(game->move_count, 1);
 	write(1, "\n", 1);
 	draw_map(game);
@@ -55,20 +61,16 @@ void	move_player(t_game *game, int dx, int dy)
 		return ;
 	if (game->map[new_y][new_x] == 'C')
 		game->collectibles--;
+	game->move_count++;
 	if (game->map[new_y][new_x] == 'E')
 	{
 		if (game->collectibles == 0)
 		{
+			ft_putnbr_fd(game->move_count, 1);
+			write(1, "\n", 1);
 			write(1, "🪇  You win 🪇\n", 19);
 			close_game(game, 0);
 		}
 	}
-	if (game->last_was_exit)
-	{
-		game->map[game->player_y][game->player_x] = 'E';
-		game->last_was_exit = 0;
-	}
-	else
-		game->map[game->player_y][game->player_x] = '0';
 	move_player2(game, new_x, new_y);
 }
